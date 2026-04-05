@@ -1,7 +1,7 @@
 # Project 1 — Internal Knowledge Base Chatbot
 
 A RAG-powered assistant built with LangChain, pgvector, and the Anthropic Claude API.
-Employees ask questions; the system retrieves relevant policy docs and answers with citations.
+User ask questions; the system retrieves relevant policy docs and answers with citations.
 
 ## Project structure
 
