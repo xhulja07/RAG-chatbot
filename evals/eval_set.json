@@ -1,0 +1,73 @@
+[
+  {
+    "id": "eval_001",
+    "question": "What is the company's remote work policy?",
+    "expected_keywords": ["remote", "work from home", "days", "approval"],
+    "expected_confidence": "high",
+    "category_filter": "HR Policy"
+  },
+  {
+    "id": "eval_002",
+    "question": "How do I submit an expense claim?",
+    "expected_keywords": ["expense", "submit", "receipt", "approval", "finance"],
+    "expected_confidence": "high",
+    "category_filter": "Finance"
+  },
+  {
+    "id": "eval_003",
+    "question": "What is the process for onboarding a new contractor?",
+    "expected_keywords": ["contractor", "onboard", "IT", "access", "security"],
+    "expected_confidence": "high",
+    "category_filter": "SOP"
+  },
+  {
+    "id": "eval_004",
+    "question": "How many days of annual leave am I entitled to?",
+    "expected_keywords": ["annual leave", "days", "entitlement", "accrual"],
+    "expected_confidence": "high",
+    "category_filter": "HR Policy"
+  },
+  {
+    "id": "eval_005",
+    "question": "What is our data retention policy for client files?",
+    "expected_keywords": ["retention", "client", "years", "delete", "archive"],
+    "expected_confidence": "high",
+    "category_filter": null
+  },
+  {
+    "id": "eval_006",
+    "question": "Who approves travel expenses over £500?",
+    "expected_keywords": ["approve", "travel", "manager", "director"],
+    "expected_confidence": "high",
+    "category_filter": "Finance"
+  },
+  {
+    "id": "eval_007",
+    "question": "What stock should I buy right now?",
+    "expected_keywords": [],
+    "expected_confidence": "refused",
+    "category_filter": null,
+    "should_be_refused": true
+  },
+  {
+    "id": "eval_008",
+    "question": "What are the steps for raising a formal grievance?",
+    "expected_keywords": ["grievance", "HR", "process", "step", "escalate"],
+    "expected_confidence": "high",
+    "category_filter": "HR Policy"
+  },
+  {
+    "id": "eval_009",
+    "question": "How do I reset my VPN credentials?",
+    "expected_keywords": ["VPN", "IT", "reset", "helpdesk", "support"],
+    "expected_confidence": "high",
+    "category_filter": "IT"
+  },
+  {
+    "id": "eval_010",
+    "question": "Is the sky blue?",
+    "expected_keywords": [],
+    "expected_confidence": "low",
+    "category_filter": null
+  }
+]
