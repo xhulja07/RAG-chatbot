@@ -1,0 +1,49 @@
+services:
+
+  # ── Postgres with pgvector ─────────────────────────────────────────────────
+  db:
+    image: pgvector/pgvector:pg16
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER:     kbuser
+      POSTGRES_PASSWORD: kbpassword
+      POSTGRES_DB:       kbchatbot
+    ports:
+      - "5432:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+      - ./db/schema.sql:/docker-entrypoint-initdb.d/01_schema.sql
+
+  # ── FastAPI backend ────────────────────────────────────────────────────────
+  api:
+    build: .
+    restart: unless-stopped
+    command: uvicorn app.main:app --host 0.0.0.0 --port 8000
+    ports:
+      - "8000:8000"
+    environment:
+      DATABASE_URL:            postgresql://kbuser:kbpassword@db:5432/kbchatbot
+      ANTHROPIC_API_KEY:       ${ANTHROPIC_API_KEY}
+      OPENAI_API_KEY:          ${OPENAI_API_KEY}
+      LANGCHAIN_API_KEY:       ${LANGCHAIN_API_KEY:-}
+      LANGCHAIN_TRACING_V2:   ${LANGCHAIN_TRACING_V2:-false}
+    depends_on:
+      - db
+
+  # ── Streamlit UI ───────────────────────────────────────────────────────────
+  ui:
+    build: .
+    restart: unless-stopped
+    command: streamlit run streamlit_app.py --server.port 8501 --server.address 0.0.0.0
+    ports:
+      - "8501:8501"
+    environment:
+      API_BASE_URL:            http://api:8000
+      DATABASE_URL:            postgresql://kbuser:kbpassword@db:5432/kbchatbot
+      ANTHROPIC_API_KEY:       ${ANTHROPIC_API_KEY}
+      OPENAI_API_KEY:          ${OPENAI_API_KEY}
+    depends_on:
+      - api
+
+volumes:
+  pgdata:
